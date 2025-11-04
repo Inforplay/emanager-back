@@ -671,6 +671,265 @@
           }
         }
       }
+    },
+    "/jogos/": {
+      "get": {
+        "tags": [
+          "Jogos"
+        ],
+        "description": "Retorna todos os registros",
+        "responses": {
+          "200": {
+            "description": "Retorna todos os registros",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "nome": {
+                    "type": "string",
+                    "example": "nome"
+                  },
+                  "plataforma_id": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "preco_full": {
+                    "type": "number",
+                    "example": 50
+                  },
+                  "preco_promo": {
+                    "type": "number",
+                    "example": 25
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Jogos"
+        ],
+        "description": "Cria um registro",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "Nome"
+                },
+                "plataforma_id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "preco_full": {
+                  "type": "number",
+                  "example": 50
+                },
+                "preco_promo": {
+                  "type": "number",
+                  "example": 25
+                }
+              },
+              "required": [
+                "nome",
+                "plataforma_id",
+                "preco_full",
+                "preco_promo"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Registro criado",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "success"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Registro criado com sucesso."
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jogos/{id}": {
+      "get": {
+        "tags": [
+          "Jogos"
+        ],
+        "description": "Retorna um registro",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna um registro",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "nome": {
+                  "type": "string",
+                  "example": "nome"
+                },
+                "plataforma_id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "preco_full": {
+                  "type": "number",
+                  "example": 50
+                },
+                "preco_promo": {
+                  "type": "number",
+                  "example": 25
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Jogos"
+        ],
+        "description": "Atualiza um registro",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "nome": {
+                  "type": "string",
+                  "example": "Nome"
+                },
+                "plataforma_id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "preco_full": {
+                  "type": "number",
+                  "example": 50
+                },
+                "preco_promo": {
+                  "type": "number",
+                  "example": 25
+                }
+              },
+              "required": [
+                "id",
+                "nome",
+                "plataforma_id",
+                "preco_full",
+                "preco_promo"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Registro atualizado",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "success"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Registro atualizado com sucesso."
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Jogos"
+        ],
+        "description": "Deleta um registro",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Registro deletado",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "success"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Registro deletado com sucesso."
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
