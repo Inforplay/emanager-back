@@ -21,6 +21,54 @@
         }
       }
     },
+    "/login": {
+      "post": {
+        "tags": [
+          "Usuarios"
+        ],
+        "description": "Realiza o login do usuário",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "email"
+                },
+                "senha": {
+                  "type": "string",
+                  "example": "senha"
+                }
+              },
+              "required": [
+                "email",
+                "senha"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Login realizado",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "usuario": {
+                  "type": "string",
+                  "example": "Dados do usuário"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
     "/niveis/": {
       "get": {
         "tags": [
@@ -898,6 +946,501 @@
       "delete": {
         "tags": [
           "Jogos"
+        ],
+        "description": "Deleta um registro",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Registro deletado",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "success"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Registro deletado com sucesso."
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usuarios/": {
+      "get": {
+        "tags": [
+          "Usuarios"
+        ],
+        "description": "Retorna todos os registros",
+        "responses": {
+          "200": {
+            "description": "Retorna todos os registros",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "nome": {
+                    "type": "string",
+                    "example": "nome"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "email"
+                  },
+                  "senha": {
+                    "type": "string",
+                    "example": "senha"
+                  },
+                  "nivel_id": {
+                    "type": "number",
+                    "example": 1
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Usuarios"
+        ],
+        "description": "Cria um registro",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "nome"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "email"
+                },
+                "senha": {
+                  "type": "string",
+                  "example": "senha"
+                },
+                "nivel_id": {
+                  "type": "number",
+                  "example": 1
+                }
+              },
+              "required": [
+                "nome",
+                "email",
+                "senha",
+                "nivel_id"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Registro criado",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "success"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Registro criado com sucesso."
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usuarios/{id}": {
+      "get": {
+        "tags": [
+          "Usuarios"
+        ],
+        "description": "Retorna um registro",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna um registro",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "nome": {
+                  "type": "string",
+                  "example": "nome"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "email"
+                },
+                "senha": {
+                  "type": "string",
+                  "example": "senha"
+                },
+                "nivel_id": {
+                  "type": "number",
+                  "example": 1
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Usuarios"
+        ],
+        "description": "Atualiza um registro",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "nome"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "email"
+                },
+                "senha": {
+                  "type": "string",
+                  "example": "senha"
+                },
+                "nivel_id": {
+                  "type": "number",
+                  "example": 1
+                }
+              },
+              "required": [
+                "nome",
+                "email",
+                "senha",
+                "nivel_id"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Registro atualizado",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "success"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Registro atualizado com sucesso."
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Usuarios"
+        ],
+        "description": "Deleta um registro",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Registro deletado",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "success"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Registro deletado com sucesso."
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/licencas/": {
+      "get": {
+        "tags": [
+          "Licencas"
+        ],
+        "description": "Retorna todos os registros",
+        "responses": {
+          "200": {
+            "description": "Retorna todos os registros",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "prioridade": {
+                    "type": "string",
+                    "example": "ok"
+                  },
+                  "jogo_id": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "preco": {
+                    "type": "number",
+                    "example": 99.99
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Licencas"
+        ],
+        "description": "Cria um registro",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "prioridade": {
+                  "type": "string",
+                  "example": "ok"
+                },
+                "jogo_id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "preco": {
+                  "type": "number",
+                  "example": 99.99
+                }
+              },
+              "required": [
+                "prioridade",
+                "jogo_id",
+                "preco"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Registro criado",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "success"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Registro criado com sucesso."
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/licencas/{id}": {
+      "get": {
+        "tags": [
+          "Licencas"
+        ],
+        "description": "Retorna um registro",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna um registro",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "prioridade": {
+                  "type": "string",
+                  "example": "ok"
+                },
+                "jogo_id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "preco": {
+                  "type": "number",
+                  "example": 99.99
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Licencas"
+        ],
+        "description": "Atualiza um registro",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "prioridade": {
+                  "type": "string",
+                  "example": "ok"
+                },
+                "jogo_id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "preco": {
+                  "type": "number",
+                  "example": 99.99
+                }
+              },
+              "required": [
+                "id",
+                "prioridade",
+                "jogo_id",
+                "preco"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Registro atualizado",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "success"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Registro atualizado com sucesso."
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Licencas"
         ],
         "description": "Deleta um registro",
         "parameters": [
