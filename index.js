@@ -9,6 +9,7 @@ import clientesRoute from "./src/routes/clientesRoute.mjs";
 import jogosRoute from "./src/routes/jogosRoute.mjs";
 import usuariosRoute from "./src/routes/usuariosRoute.mjs";
 import { login } from "./src/controllers/usuarioController.mjs";
+import licencasRoute from "./src/routes/licencasRoute.mjs";
 
 const app = express();
 
@@ -48,6 +49,7 @@ app.use("/plataformas", plataformaRoute);
 app.use("/clientes", clientesRoute);
 app.use("/jogos", jogosRoute);
 app.use("/usuarios", usuariosRoute);
+app.use("/licencas", licencasRoute);
 app.listen(8000, () => {
     console.log(`Servidor on: http://localhost:8000`);
 })
