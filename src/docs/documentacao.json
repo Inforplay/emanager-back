@@ -1473,6 +1473,540 @@
           }
         }
       }
+    },
+    "/contas/": {
+      "get": {
+        "tags": [
+          "Contas"
+        ],
+        "description": "Retorna todos os registros",
+        "responses": {
+          "200": {
+            "description": "Retorna todos os registros",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "email"
+                  },
+                  "senha": {
+                    "type": "string",
+                    "example": "senha"
+                  },
+                  "store_id": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "autenticacao_2fa": {
+                    "type": "string",
+                    "example": "true"
+                  },
+                  "data_nascimento": {
+                    "type": "string",
+                    "example": "00/00/0000"
+                  },
+                  "cliente_id": {
+                    "type": "number",
+                    "example": 1
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Contas"
+        ],
+        "description": "Cria um registro",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "email"
+                },
+                "senha": {
+                  "type": "string",
+                  "example": "senha"
+                },
+                "store_id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "autenticacao_2fa": {
+                  "type": "string",
+                  "example": "true"
+                },
+                "data_nascimento": {
+                  "type": "string",
+                  "example": "00/00/0000"
+                },
+                "cliente_id": {
+                  "type": "number",
+                  "example": 1
+                }
+              },
+              "required": [
+                "email",
+                "senha",
+                "store_id",
+                "autenticacao_2fa",
+                "data_nascimento",
+                "cliente_id"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Registro criado",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "success"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Registro criado com sucesso."
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/contas/{id}": {
+      "get": {
+        "tags": [
+          "Contas"
+        ],
+        "description": "Retorna um registro",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna um registro",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "email": {
+                  "type": "string",
+                  "example": "email"
+                },
+                "senha": {
+                  "type": "string",
+                  "example": "senha"
+                },
+                "store_id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "autenticacao_2fa": {
+                  "type": "string",
+                  "example": "true"
+                },
+                "data_nascimento": {
+                  "type": "string",
+                  "example": "00/00/0000"
+                },
+                "cliente_id": {
+                  "type": "number",
+                  "example": 1
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Contas"
+        ],
+        "description": "Atualiza um registro",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "email": {
+                  "type": "string",
+                  "example": "email"
+                },
+                "senha": {
+                  "type": "string",
+                  "example": "senha"
+                },
+                "store_id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "autenticacao_2fa": {
+                  "type": "string",
+                  "example": "true"
+                },
+                "data_nascimento": {
+                  "type": "string",
+                  "example": "00/00/0000"
+                },
+                "cliente_id": {
+                  "type": "number",
+                  "example": 1
+                }
+              },
+              "required": [
+                "id",
+                "email",
+                "senha",
+                "store_id",
+                "autenticacao_2fa",
+                "data_nascimento",
+                "cliente_id"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Registro atualizado",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "success"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Registro atualizado com sucesso."
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Contas"
+        ],
+        "description": "Deleta um registro",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Registro deletado",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "success"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Registro deletado com sucesso."
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contas-digitais/": {
+      "get": {
+        "tags": [
+          "Contas Digitais"
+        ],
+        "description": "Retorna todos os registros",
+        "responses": {
+          "200": {
+            "description": "Retorna todos os registros",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "conta_digital_id": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "jogo_id": {
+                    "type": "number",
+                    "example": 1
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Contas Digitais"
+        ],
+        "description": "Cria um registro",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "conta_digital_id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "jogo_id": {
+                  "type": "number",
+                  "example": 1
+                }
+              },
+              "required": [
+                "id",
+                "conta_digital_id",
+                "jogo_id"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Registro criado",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "success"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Registro criado com sucesso."
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contas-digitais/{id}": {
+      "get": {
+        "tags": [
+          "Contas Digitais"
+        ],
+        "description": "Retorna um registro",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna um registro",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "conta_digital_id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "jogo_id": {
+                  "type": "number",
+                  "example": 1
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Contas Digitais"
+        ],
+        "description": "Atualiza um registro",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "conta_digital_id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "jogo_id": {
+                  "type": "number",
+                  "example": 1
+                }
+              },
+              "required": [
+                "id",
+                "conta_digital_id",
+                "jogo_id"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Registro atualizado",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "success"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Registro atualizado com sucesso."
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Contas Digitais"
+        ],
+        "description": "Deleta um registro",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Registro deletado",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "success"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Registro deletado com sucesso."
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -1,9 +1,9 @@
 import { prisma } from "../services/index.js";
-import bcrypt from "bcrypt";
+
 
 async function buscarTodos(){
     try {
-        return await prisma.contasDigitaisJogos.findMany();
+        return await prisma.contas_digitais_jogos.findMany();
     } catch (error) {
         return {
             tipo: "error",
@@ -14,7 +14,7 @@ async function buscarTodos(){
 
 async function buscarUm(id){
     try {
-        const request = await prisma.contasDigitaisJogos.findFirst({
+        const request = await prisma.contas_digitais_jogos.findFirst({
             where: {
                 id: Number(id)
             }
@@ -37,11 +37,7 @@ async function buscarUm(id){
 
 async function criar(dados){
     try {
-        dados = {
-            ...dados,
-            senha: await bcrypt.hash(dados.senha, 10)
-        }
-        const request = await prisma.contasDigitaisJogos.create({
+            const request = await prisma.contas_digitais_jogos.create({
             data: dados
         });
 
@@ -61,7 +57,7 @@ async function criar(dados){
 
 async function editar(dados, id){
     try {
-        const request =  await prisma.contasDigitaisJogos.update({
+        const request =  await prisma.contas_digitais_jogos.update({
             data: dados,
             where: {
                 id: Number(id)
@@ -84,7 +80,7 @@ async function editar(dados, id){
 
 async function deletar(id){
     try {
-        const request =  await prisma.contasDigitaisJogos.delete({
+        const request =  await prisma.contas_digitais_jogos.delete({
             where: {
                 id: Number(id)
             }
@@ -106,7 +102,7 @@ async function deletar(id){
 async function login(dados){
     try {
         
-        const usuario = await prisma.contasDigitaisJogos.findFirst({
+        const usuario = await prisma.contas_digitais_jogos.findFirst({
             where: {
                 email: dados.email
             }
