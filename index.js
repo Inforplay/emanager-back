@@ -8,6 +8,7 @@ import plataformaRoute from "./src/routes/plataformaRoutes.mjs";
 import clientesRoute from "./src/routes/clientesRoute.mjs";
 import jogosRoute from "./src/routes/jogosRoute.mjs";
 import usuariosRoute from "./src/routes/usuariosRoute.mjs";
+import contasRoute from "./src/routes/contasRoute.mjs";
 import { login } from "./src/controllers/usuarioController.mjs";
 import licencasRoute from "./src/routes/licencasRoute.mjs";
 
@@ -50,6 +51,7 @@ app.use("/clientes", clientesRoute);
 app.use("/jogos", jogosRoute);
 app.use("/usuarios", usuariosRoute);
 app.use("/licencas", licencasRoute);
+app.use("/contas", contasRoute);
 app.listen(8000, () => {
     console.log(`Servidor on: http://localhost:8000`);
 })
