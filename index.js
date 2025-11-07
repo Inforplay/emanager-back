@@ -12,10 +12,10 @@ import contasRoute from "./src/routes/contasRoute.mjs";
 import { login } from "./src/controllers/usuarioController.mjs";
 import licencasRoute from "./src/routes/licencasRoute.mjs";
 import contasDigitaisJogosRoute from "./src/routes/contasDigitaisJogosRoute.mjs";
+import { rotaProtegida } from "./src/utils/index.mjs";
 
 
 const app = express();
-
 
 // Middleware - interceptores
 app.use(cors()); //libera requisições externas
@@ -47,14 +47,15 @@ app.post("/login", async (req, res) => {
     } */
     res.json(await login(req.body));
 });
-app.use("/niveis", niveisRoute);
-app.use("/plataformas", plataformaRoute);
-app.use("/clientes", clientesRoute);
-app.use("/jogos", jogosRoute);
-app.use("/usuarios", usuariosRoute);
-app.use("/licencas", licencasRoute);
-app.use("/contas", contasRoute);
-app.use("/contas-digitais", contasDigitaisJogosRoute);
+app.use("/niveis", rotaProtegida, niveisRoute);
+app.use("/plataformas", rotaProtegida, plataformaRoute);
+app.use("/clientes", rotaProtegida, clientesRoute);
+app.use("/jogos", rotaProtegida, jogosRoute);
+app.use("/usuarios", rotaProtegida, usuariosRoute);
+app.use("/licencas", rotaProtegida, licencasRoute);
+app.use("/contas", rotaProtegida, contasRoute);
+app.use("/contas-digitais", rotaProtegida, contasDigitaisJogosRoute);
+
 app.listen(8000, () => {
     console.log(`Servidor on: http://localhost:8000`);
 })
