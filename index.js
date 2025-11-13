@@ -47,7 +47,7 @@ app.post("/login", async (req, res) => {
     } */
     res.json(await login(req.body));
 });
-app.use("/niveis", rotaProtegida, niveisRoute);
+app.use("/niveis", niveisRoute);
 app.use("/plataformas", rotaProtegida, plataformaRoute);
 app.use("/clientes", rotaProtegida, clientesRoute);
 app.use("/jogos", rotaProtegida, jogosRoute);
