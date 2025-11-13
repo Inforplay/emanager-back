@@ -33,9 +33,8 @@ app.post("/login", async (req, res) => {
     /* #swagger.parameters['obj'] = {
                 in: 'body',
                 schema: {
-                $email: "email", 
-                $senha: "senha"
-                
+                    $email: "email", 
+                    $senha: "senha"
                 }
         } */
     /* #swagger.responses[200] = {

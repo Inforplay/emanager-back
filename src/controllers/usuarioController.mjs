@@ -7,6 +7,9 @@ async function buscarTodos(){
         return await prisma.usuarios.findMany({
             omit: {
                 senha: true
+            }, 
+            include: {
+                niveis: true
             }
         });
     } catch (error) {
@@ -121,22 +124,25 @@ async function login(dados){
         const usuario = await prisma.usuarios.findFirst({
             where: {
                 email: dados.email
+            },
+            include: {
+                niveis: true
             }
         });
         if(!usuario){
             return {
-                tipo: "error",
+                tipo: "warning",
                 mensagem: "Usuário não encontrado!"
             }
         }
         const senhaValida = await bcrypt.compare(dados.senha, usuario.senha);
         if(!senhaValida){
             return {
-                tipo: "error",
+                tipo: "warning",
                 mensagem: "Usuário ou Senha inválida!"
             }
         }
-
+        delete usuario.senha;
         const token = jwt.sign({data: usuario.id}, process.env.SEGREDO, { expiresIn: '1h' });
         
         return {
