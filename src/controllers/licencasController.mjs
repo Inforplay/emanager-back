@@ -2,7 +2,11 @@ import { prisma } from "../services/index.js";
 
 async function buscarTodos(){
     try {
-        return await prisma.licencas.findMany();
+        return await prisma.licencas.findMany({
+            include: {
+                jogos: true
+            }
+        });
     } catch (error) {
         return {
             tipo: "error",
@@ -16,6 +20,9 @@ async function buscarUm(id){
         const request = await prisma.licencas.findFirst({
             where: {
                 id: Number(id)
+            },
+            include: {
+                jogos: true
             }
         });
         if(request){
