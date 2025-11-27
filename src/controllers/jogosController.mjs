@@ -2,7 +2,12 @@ import { prisma } from "../services/index.js";
 
 async function buscarTodos(){
     try {
-        return await prisma.jogos.findMany();
+        return await prisma.jogos.findMany({
+            include:{
+                plataformas: true,
+                licencas: true
+            }
+        });
     } catch (error) {
         return {
             tipo: "error",

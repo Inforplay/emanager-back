@@ -1,9 +1,17 @@
 import { prisma } from "../services/index.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 async function buscarTodos(){
     try {
-        return await prisma.usuarios.findMany();
+        return await prisma.usuarios.findMany({
+            omit: {
+                senha: true
+            }, 
+            include: {
+                niveis: true
+            }
+        });
     } catch (error) {
         return {
             tipo: "error",
@@ -17,6 +25,9 @@ async function buscarUm(id){
         const request = await prisma.usuarios.findFirst({
             where: {
                 id: Number(id)
+            },
+            omit: {
+                senha: true
             }
         });
         if(request){
@@ -107,31 +118,37 @@ async function deletar(id){
         }
     }
 }
+
 async function login(dados){
     try {
-        
         const usuario = await prisma.usuarios.findFirst({
             where: {
                 email: dados.email
+            },
+            include: {
+                niveis: true
             }
         });
         if(!usuario){
             return {
-                tipo: "error",
+                tipo: "warning",
                 mensagem: "Usuário não encontrado!"
             }
         }
         const senhaValida = await bcrypt.compare(dados.senha, usuario.senha);
         if(!senhaValida){
             return {
-                tipo: "error",
+                tipo: "warning",
                 mensagem: "Usuário ou Senha inválida!"
             }
         }
+        delete usuario.senha;
+        const token = jwt.sign({data: usuario.id}, process.env.SEGREDO, { expiresIn: '1h' });
         
-            return {
-                usuario
-            }
+        return {
+            usuario,
+            token
+        }
         
     } catch (error) {
         return {
