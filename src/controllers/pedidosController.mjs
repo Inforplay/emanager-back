@@ -5,6 +5,7 @@ async function buscarTodos() {
     return await prisma.pedidos.findMany({
       include: {
         clientes: true,
+        pedidos_jogos: true
       },
     });
   } catch (error) {
